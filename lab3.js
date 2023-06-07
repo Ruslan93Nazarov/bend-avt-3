@@ -14,7 +14,7 @@ async function run() {
 // Подключаемся к серверу
         await mongoClient.connect();
 // обращаемся к базе данных пользователя
-        const db = mongoClient.db(`${name}`);
+        const db = mongoClient.db(`${sysadmin}`);
 // выполняем пинг для проверки подключения
         const result = await db.command({ ping: 1 });
         console.log("Подключение с сервером успешно установлено");
@@ -34,7 +34,7 @@ run().catch(console.error);
 const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
-    res.end(`Hello ${name}, you have ${count} documents` );
+    res.end(`Hello ${sysadmin}, you have ${count} documents` );
 });
 server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
